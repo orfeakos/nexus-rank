@@ -64,6 +64,10 @@ export default async function FlexPage({ params }: { params: Promise<{ wallet: s
           <div className="text-white text-3xl font-bold">{data.percentile}% of holders</div>
         </div>
         <CopyButton url={flexUrl} />
+        <a href={`https://phantom.app/ul/transfer?to=${wallet}&mint=${TOKEN_MINT}`} target="_blank"
+          className="block w-full mt-3 bg-purple-600 text-white font-bold rounded-xl p-4 hover:bg-purple-700 transition">
+          Send NEXUS 🚀
+        </a>
         <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`} target="_blank"
           className="block w-full mt-3 bg-sky-500 text-white font-bold rounded-xl p-4 hover:bg-sky-600 transition">
           Share on X 🐦
