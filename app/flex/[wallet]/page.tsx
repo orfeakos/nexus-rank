@@ -4,7 +4,7 @@ const TOKEN_MINT = 'HZKh1BVFNapR1cH4PSyyuw9jiCfGyHcfBUjfMTzGpump';
 const HELIUS_KEY = '12001b46-fac6-45e4-9152-75160969c9f0';
 
 const TIERS: Record<string, { color: string; emoji: string; label: string; desc: string }> = {
-  Platinum: { color: '#E5E4E2', emoji: '💎', label: 'PLATINUM', desc: 'Top Holder' },
+  Diamond: { color: '#E5E4E2', emoji: '💎', label: 'DIAMOND', desc: 'Top Holder' },
   Gold: { color: '#FFD700', emoji: '🥇', label: 'GOLD', desc: 'Whale' },
   Silver: { color: '#C0C0C0', emoji: '🥈', label: 'SILVER', desc: 'Holder' },
   Bronze: { color: '#CD7F32', emoji: '🥉', label: 'BRONZE', desc: 'Early Adopter' },
@@ -29,7 +29,7 @@ async function getTokenData(wallet: string) {
     const price = parseFloat(priceData?.pairs?.[0]?.priceUsd || '0');
     const usdValue = balance * price;
     let tier = 'None'; let percentile = 100;
-    if (balance > 1000000) { tier = 'Platinum'; percentile = 1; }
+    if (balance > 1000000) { tier = 'Diamond'; percentile = 1; }
     else if (balance > 100000) { tier = 'Gold'; percentile = 5; }
     else if (balance > 10000) { tier = 'Silver'; percentile = 15; }
     else if (balance > 1000) { tier = 'Bronze'; percentile = 30; }
@@ -51,12 +51,12 @@ export default async function FlexPage({ params }: { params: Promise<{ wallet: s
         <h1 className="text-white text-4xl font-bold mb-1">NEXUS</h1>
         <div className="text-2xl font-bold mb-2" style={{ color: tier.color }}>{tier.label} HOLDER</div>
         <div className="text-gray-400 text-sm mb-6">{tier.desc}</div>
-        {false && (
+        
           <div className="bg-white/5 rounded-xl p-4 mb-4">
             <div className="text-gray-400 text-sm mb-1">NEXUS Balance</div>
             <div className="text-white text-3xl font-bold">{data.balance?.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
           </div>
-        )}
+        
         <div className="bg-white/5 rounded-xl p-4 mb-4">
           <div className="text-gray-400 text-sm mb-1">USD Value</div>
           <div className="text-green-400 text-3xl font-bold">${data.usdValue?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
